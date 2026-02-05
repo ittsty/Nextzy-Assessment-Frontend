@@ -17,7 +17,6 @@ export default function RewardProgress() {
   return (
 <div className="pl-4 pr-8">
       <div className="relative w-full max-w-xl mx-auto py-12 ">
-      {/* progress bar */}
       <div className="relative h-3 bg-orange-200 rounded-full">
         <div
           className="h-full bg-orange-500 rounded-full"
@@ -43,7 +42,7 @@ export default function RewardProgress() {
               {"✓"}
             </div>
 
-            <button className={`mt-3 px-2 py-1 rounded-full text-xs font-medium min-w-15 bg-red-400`}>
+            <button className={`mt-3 px-2 py-1 rounded-full text-xs font-medium min-w-16 bg-red-400 hover:shadow-md`}>
               รับรางวัล
             </button>
           </div>

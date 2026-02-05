@@ -8,8 +8,8 @@ const Homeview = () => {
       <RewardCard />
       <ResetBotton />
       <HistoryView />
-      <div className="w-dvw md:max-w-100 p-4 bg-white rounded-t-2xl shadow-md h-22 fixed bottom-0">
-        <button className=" rounded-full w-full h-12 bg-yellow-400 text-white text-xl font-bold">
+      <div className="w-dvw md:max-w-100 p-4 bg-white rounded-t-2xl shadow-lg h-22 fixed bottom-0">
+        <button className=" rounded-full w-full h-12 bg-yellow-400 text-white text-xl font-bold hover:shadow-md">
           ไปเล่นเกม
         </button>
       </div>

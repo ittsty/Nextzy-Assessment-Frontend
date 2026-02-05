@@ -1,12 +1,28 @@
-const HistoryList = () => {
+import { useHistoryStore } from "@/stores/history.store";
+import HistoryItem from "./HistoryItem";
+
+type HistoryType = "PLAY" | "REWARD";
+
+type HistoryListProps = {
+  type: HistoryType;
+};
+
+const HistoryList = ({ type }: HistoryListProps) => {
+  const { playHistory, rewardHistory } = useHistoryStore();
+  const data = type === "PLAY" ? playHistory : rewardHistory;
+
+  if (data.length === 0) {
+    return <div className="p-4 text-center text-gray-500">ไม่มีข้อมูล</div>;
+  }
   return (
-    <div className="border-b-2 border-gray-200 py-4 px-6 flex gap-4">
-      <img src="favicon.ico" className="w-12" />
-      <div className="h-full flex flex-col gap-2">
-        {/* mockup  */}
-        <h2 className="font-semibold"> ได้รับ 1,000 คะแนน</h2>
-        <h2 className="font-light text-sm text-gray-600"> ได้รับเมื่อ 14/02/20 19:30น.</h2>
-      </div>
+    <div>
+      <ul>
+        {data.map((item) => (
+          <li key={item.id}>
+            <HistoryItem point={item.point} created_at={item.created_at} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
