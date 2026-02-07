@@ -8,7 +8,7 @@ const RewardCard = () => {
   const { totalScore, loading, fetchScore } = useScoreStore();
 
   useEffect(() => {
-    fetchScore("user_001");
+    fetchScore("u1");
   }, [fetchScore]);
   return (
     <div className="w-dvw md:max-w-100 max-h-58 bg-gray-100 text-black p-4">
@@ -23,7 +23,7 @@ const RewardCard = () => {
           </h1>
         )}
 
-        <ProgressBar current={totalScore} max={10000} />
+        <ProgressBar uid={"u1"}/>
       </div>
     </div>
   );

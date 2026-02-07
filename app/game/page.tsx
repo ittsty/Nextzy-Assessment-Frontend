@@ -1,6 +1,5 @@
-const gamepage = () => {
-  return (
-    <div>gamepage</div>
-  )
+import Gameview from "@/views/Gameview"
+
+export default function gamepage() {
+  return <Gameview/>;
 }
-export default gamepage

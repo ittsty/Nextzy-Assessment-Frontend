@@ -35,7 +35,7 @@ const HistoryList = ({ type }: HistoryListProps) => {
       <ul>
         {rewardHistory.map((item) => (
           <li key={item.id}>
-            <RewardHistoryItem rewarddesc={item.rewarddesc} created_at={item.created_at}/>
+            <RewardHistoryItem rewarddesc={item.rewardid} created_at={item.created_at}/>
           </li>
         ))}
       </ul>
