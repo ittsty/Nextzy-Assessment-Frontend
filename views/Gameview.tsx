@@ -18,7 +18,7 @@ const Gameview = () => {
   const [visiblePoints, setVisiblePoints] = useState<number[]>(ALL_POINTS);
   const [fadedPoints, setFadedPoints] = useState<number[]>([]);
   const [openReward, setOpenReward] = useState(false);
-  const {totalScore, fetchScore } = useScoreStore();
+  const { totalScore, fetchScore } = useScoreStore();
   const handlePlay = async () => {
     try {
       setGameState("PLAYING");
@@ -92,7 +92,7 @@ const Gameview = () => {
       <div className="mb-auto mt-6">
         {gameState === "START" && (
           <button
-            className="px-6 py-2 rounded-full bg-red-500 text-white font-bold disabled:opacity-40"
+            className="px-6 py-2 rounded-full bg-red-500 text-white font-bold hover:shadow-md disabled:opacity-40"
             onClick={handlePlay}
           >
             สุ่มคะแนน
@@ -120,6 +120,7 @@ const Gameview = () => {
         onClose={() => {
           setOpenReward(false);
           resetGame();
+          fetchScore(uid);
         }}
         point={selectedPoint ?? 0}
       />

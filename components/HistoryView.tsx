@@ -17,13 +17,13 @@ const HistoryView = () => {
     <div className=" w-dvw grow md:max-w-100 overflow-auto text-black relative">
       <div className="w-full h-14 border-b-2 border-gray-200 flex items-center gap-2 p-2 sticky top-0 bg-white">
         <button
-          className={`p-2 border rounded-full text-sm ${type === "PLAY" ? "text-red-600 border-red-600" : "text-gray-600 border-gray-600"}`}
+          className={`p-2 border rounded-full text-sm hover:shadow-md ${type === "PLAY" ? "text-red-600 border-red-600" : "text-gray-600 border-gray-600"}`}
           onClick={() => setType("PLAY")}
         >
           ประวัติการเล่น
         </button>
         <button
-          className={`p-2 border rounded-full text-sm ${type === "REWARD" ? "text-red-600 border-red-600" : "text-gray-600 border-gray-600"}`}
+          className={`p-2 border rounded-full text-sm hover:shadow-md ${type === "REWARD" ? "text-red-600 border-red-600" : "text-gray-600 border-gray-600"}`}
           onClick={() => setType("REWARD")}
         >
           ประวัติรางวัล

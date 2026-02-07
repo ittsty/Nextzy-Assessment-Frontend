@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import ClaimRewardModel from "./ClaimRewardModel";
 import { rewardService } from "@/services/reward.service";
 import { scoreService } from "@/services/score.service";
+import { useScoreStore } from "@/stores/score.store";
 
 type Checkpoint = {
   id: string;
@@ -16,7 +17,7 @@ export default function RewardProgress({ uid }: { uid: string }) {
   const [openReward, setOpenReward] = useState<Checkpoint | null>(null);
   const [loading, setLoading] = useState(false);
   const MAX = 10000;
-
+  const { fetchScore } = useScoreStore();
   const checkpoints = [
     { id: "A", value: 5000 },
     { id: "B", value: 7500 },
@@ -31,7 +32,7 @@ export default function RewardProgress({ uid }: { uid: string }) {
   const handleRedeem = async (cp: Checkpoint) => {
     try {
       setLoading(true);
-      await rewardService.redeemReward(uid, cp.id);
+      await rewardService.redeemReward(uid,cp.id)
       setOpenReward(cp);
       setClaimedRewardIds((prev) => [...prev, cp.id]);
     } catch (err: any) {
@@ -45,8 +46,10 @@ export default function RewardProgress({ uid }: { uid: string }) {
     const load = async () => {
       try {
         const data = await scoreService.getUserScore(uid);
-        setCurrent(data.totalpoint);
-        const claimed = (data.history ?? []).map((r: any) => r.id);
+        console.log(data)
+        if (!data?.data) return;
+        setCurrent(data.data.totalpoint);
+        const claimed = (data.data.history ?? []).map((r: any) => r.rewardid);
         setClaimedRewardIds(claimed);
       } catch (err) {
         console.error(err);

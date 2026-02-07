@@ -16,4 +16,15 @@ export const historyService = {
       throw new Error("Failed to fetch reward history");
     }
   },
+  reset: async () => {
+    try {
+      const res = await fetch(`${API}/reset`,{
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    });
+      return res.json();
+    } catch (error) {
+      throw new Error("Failed to Reset");
+    }
+  },
 };
