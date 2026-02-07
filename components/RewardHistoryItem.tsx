@@ -8,7 +8,7 @@ const RewardHistoryItem = ({ rewarddesc, created_at }: RewardHisItemProps) => {
 
   return (
     <div className="border-b-2 border-gray-200 py-4 px-6 flex gap-4">
-      <img src="favicon.ico" className="w-12" />
+      <div className="w-12 h-12 rounded-full bg-linear-to-br from-purple-600 to-blue-600" />
       <div className="h-full flex flex-col gap-2">
         <h2 className="font-semibold">
           ได้รับรางวัล {rewarddesc}
