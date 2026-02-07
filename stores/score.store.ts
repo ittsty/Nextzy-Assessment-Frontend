@@ -8,7 +8,6 @@ type ScoreState = {
   fetchScore: (uid: string) => Promise<void>;
   clear: () => void;
 };
-
 export const useScoreStore = create<ScoreState>((set) => ({
   totalScore: 0,
   loading: false,

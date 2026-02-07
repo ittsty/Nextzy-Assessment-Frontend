@@ -46,7 +46,7 @@ export default function RewardProgress({ uid }: { uid: string }) {
       try {
         const data = await scoreService.getUserScore(uid);
         setCurrent(data.totalpoint);
-        const claimed = data.history.map((r: any) => r.id);
+        const claimed = (data.history ?? []).map((r: any) => r.id);
         setClaimedRewardIds(claimed);
       } catch (err) {
         console.error(err);

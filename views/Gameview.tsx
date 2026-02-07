@@ -3,6 +3,7 @@
 import GetScoreModel from "@/components/GetScoreModel";
 import { playService } from "@/services/play.service";
 import { useScoreStore } from "@/stores/score.store";
+import { useUserStore } from "@/stores/user.store";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -11,20 +12,20 @@ const ALL_POINTS = [300, 500, 1000, 3000];
 
 const Gameview = () => {
   const router = useRouter();
-
+  const uid = useUserStore((s) => s.uid);
   const [gameState, setGameState] = useState<GameState>("START");
   const [selectedPoint, setSelectedPoint] = useState<number | null>(null);
   const [visiblePoints, setVisiblePoints] = useState<number[]>(ALL_POINTS);
   const [fadedPoints, setFadedPoints] = useState<number[]>([]);
   const [openReward, setOpenReward] = useState(false);
-  const { totalScore, fetchScore } = useScoreStore();
+  const {totalScore, fetchScore } = useScoreStore();
   const handlePlay = async () => {
     try {
       setGameState("PLAYING");
       setVisiblePoints(ALL_POINTS);
       setFadedPoints([]);
 
-      const res = await playService.play("u1");
+      const res = await playService.play(uid);
       const finalPoint = res.data.point;
 
       let remaining = [...ALL_POINTS];
@@ -36,7 +37,7 @@ const Gameview = () => {
           setSelectedPoint(finalPoint);
           setGameState("FINISH");
           setOpenReward(true);
-          fetchScore("u1");
+          fetchScore(uid);
           return;
         }
 
@@ -55,19 +56,19 @@ const Gameview = () => {
   };
 
   const resetGame = () => {
-  setGameState("START");
-  setSelectedPoint(null);
-  setFadedPoints([]);
-  setVisiblePoints(ALL_POINTS);
-};
+    setGameState("START");
+    setSelectedPoint(null);
+    setFadedPoints([]);
+    setVisiblePoints(ALL_POINTS);
+  };
   useEffect(() => {
-    fetchScore("u1");
+    fetchScore(uid);
   }, [fetchScore]);
   return (
     <main className="h-dvh bg-linear-to-b from-orange-50 to-orange-100 flex flex-col justify-end items-center">
       <div className="text-center mt-8">
         <h1 className="text-2xl font-bold text-black">
-          คะแนนสะสม {totalScore.toLocaleString()}/10,000
+          คะแนนสะสม {(totalScore ?? 0).toLocaleString()}/10,000
         </h1>
       </div>
       <div className="flex gap-4 justify-center mt-auto">
@@ -78,14 +79,9 @@ const Gameview = () => {
           return (
             <div
               key={p}
-              className={`
-          px-4 py-2 rounded-full font-bold text-white
-          transition-all duration-500
-          ${
-            isFaded ? "opacity-20 scale-90 blur-[1px]" : "opacity-100 scale-100"
-          }
-          ${isWinner ? "bg-red-500 scale-125 shadow-lg" : "bg-green-500"}
-        `}
+              className={`px-4 py-2 rounded-full font-bold text-white transition-all duration-500
+              ${isFaded ? "opacity-20 scale-90 blur-[1px]" : "opacity-100 scale-100"}
+              ${isWinner ? "bg-red-500 scale-125 shadow-lg" : "bg-green-500"}`}
             >
               {p}
             </div>

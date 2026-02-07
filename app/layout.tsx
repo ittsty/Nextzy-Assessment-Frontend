@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono,Kanit } from "next/font/google";
 import "./globals.css";
 
+import AppInit from "./AppInit";
+
 const kanit = Kanit({
   subsets: ["thai", "latin"],
   weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-kanit", // เผื่อใช้กับ Tailwind
+  variable: "--font-kanit",
 });
 
 export const metadata: Metadata = {
@@ -20,9 +22,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="th">
-      <body
-        className={`${kanit.className} `}
-      >
+      <body className={`${kanit.className} `}>
+         <AppInit />
         {children}
       </body>
     </html>

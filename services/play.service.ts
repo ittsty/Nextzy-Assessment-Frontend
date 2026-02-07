@@ -1,6 +1,7 @@
+const API = process.env.NEXT_PUBLIC_BACKEND_API;
 export const playService = {
   play: async (uid: string) => {
-    const res = await fetch("http://localhost:3000/play", {
+    const res = await fetch(`${API}/play`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ uid }),

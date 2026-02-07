@@ -9,6 +9,7 @@ const Homeview = () => {
   const router = useRouter();
   return (
     <main className="h-dvh bg-white flex flex-col justify-end items-center">
+      
       <RewardCard />
       <ResetBotton />
       <HistoryView />
@@ -21,6 +22,7 @@ const Homeview = () => {
         </button>
       </div>
     </main>
+    
   );
 };
 

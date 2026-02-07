@@ -1,14 +1,19 @@
+const API = process.env.NEXT_PUBLIC_BACKEND_API;
 export const historyService = {
   getPlayHistory: async () => {
     try {
-      const res = await fetch("http://localhost:3000/history/play");
+      const res = await fetch(`${API}/history/play`);
       return res.json();
-    } catch (error) {}
+    } catch (error) {
+      throw new Error("Failed to fetch play history");
+    }
   },
   getRewardHistory: async () => {
     try {
-      const res = await fetch("http://localhost:3000/history/reward");
+      const res = await fetch(`${API}/history/reward`);
       return res.json();
-    } catch (error) {}
+    } catch (error) {
+      throw new Error("Failed to fetch reward history");
+    }
   },
 };
