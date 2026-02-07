@@ -16,7 +16,7 @@ export const useScoreStore = create<ScoreState>((set) => ({
     try {
       set({ loading: true, error: undefined });
       const res = await scoreService.getUserScore(uid);
-      set({ totalScore: res.data.totalpoint });
+      set({ totalScore: res.totalpoint });
     } catch (error) {
       set({ error: "ไม่สามารถโหลดประวัติได้" });
     } finally {
