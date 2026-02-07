@@ -37,11 +37,11 @@ export const useHistoryStore = create<HistoryState>((set) => ({
       set({ loading: true, error: undefined });
       if (type === "PLAY") {
         const data = await historyService.getPlayHistory();
-        set({ playHistory: data });
+        set({ playHistory: data.data });
       }
       if (type === "REWARD") {
         const data = await historyService.getRewardHistory();
-        set({ rewardHistory: data });
+        set({ rewardHistory: data.data });
       }
     } catch (err) {
       set({ error: "ไม่สามารถโหลดประวัติได้" });

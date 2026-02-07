@@ -11,7 +11,7 @@ const RewardCard = () => {
     fetchScore("user_001");
   }, [fetchScore]);
   return (
-    <div className="w-dvw md:max-w-100 min-h-58 bg-gray-100 text-black p-4">
+    <div className="w-dvw md:max-w-100 max-h-58 bg-gray-100 text-black p-4">
       <div className=" bg-white rounded-2xl border-2 h-full flex flex-col justify-center text-end px-2 py-6">
         <h1 className="text-lg font-semibold"> สะสมคะแนน</h1>
         <h2 className="text-sm"> คะแนนครบ 10,000 รับรางวัลใหญ่</h2>
